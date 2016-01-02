@@ -24,7 +24,7 @@ class BlogPost < ActiveRecord::Base
   def unique_slug?
     slug = (title || '').downcase.gsub(/[^A-Z]+/i,'-') unless slug.present?
     date = created_at.presence || Time.now
-    errors.add(:slug, slug + ' already exists for this month') if BlogPost.where(created_at: (date.beginning_of_month..date.end_of_month), slug: slug)
+    errors.add(:slug, 'already exists for this month') if BlogPost.where(created_at: (date.beginning_of_month..date.end_of_month), slug: slug).present?
   end
 
   def break_up_tags

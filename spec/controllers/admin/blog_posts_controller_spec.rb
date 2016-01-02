@@ -23,7 +23,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested blog_post as @blog_post' do
       blog_post = BlogPost.create! valid_attributes
-      get :edit, {id: blog_post.to_param}, valid_session
+      get :edit, {id: blog_post.id}, valid_session
       expect(assigns(:blog_post)).to eq(blog_post)
     end
   end
@@ -69,20 +69,20 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
 
       it 'updates the requested blog_post' do
         blog_post = BlogPost.create! valid_attributes
-        put :update, {id: blog_post.to_param, blog_post: new_attributes}, valid_session
+        put :update, {id: blog_post.id, blog_post: new_attributes}, valid_session
         blog_post.reload
         skip('Add assertions for updated state')
       end
 
       it 'assigns the requested blog_post as @blog_post' do
         blog_post = BlogPost.create! valid_attributes
-        put :update, {id: blog_post.to_param, blog_post: valid_attributes}, valid_session
+        put :update, {id: blog_post.id, blog_post: valid_attributes}, valid_session
         expect(assigns(:blog_post)).to eq(blog_post)
       end
 
       it 'redirects to the blog_post' do
         blog_post = BlogPost.create! valid_attributes
-        put :update, {id: blog_post.to_param, blog_post: valid_attributes}, valid_session
+        put :update, {id: blog_post.id, blog_post: valid_attributes}, valid_session
         expect(response).to redirect_to(blog_post)
       end
     end
@@ -90,13 +90,13 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the blog_post as @blog_post' do
         blog_post = BlogPost.create! valid_attributes
-        put :update, {id: blog_post.to_param, blog_post: invalid_attributes}, valid_session
+        put :update, {id: blog_post.id, blog_post: invalid_attributes}, valid_session
         expect(assigns(:blog_post)).to eq(blog_post)
       end
 
       it 're-renders the "edit" template' do
         blog_post = BlogPost.create! valid_attributes
-        put :update, {id: blog_post.to_param, blog_post: invalid_attributes}, valid_session
+        put :update, {id: blog_post.id, blog_post: invalid_attributes}, valid_session
         expect(response).to render_template('edit')
       end
     end
@@ -106,13 +106,13 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
     it 'destroys the requested blog_post' do
       blog_post = BlogPost.create! valid_attributes
       expect {
-        delete :destroy, {id: blog_post.to_param}, valid_session
+        delete :destroy, {id: blog_post.id}, valid_session
       }.to change(BlogPost, :count).by(-1)
     end
 
     it 'redirects to the blog_posts list' do
       blog_post = BlogPost.create! valid_attributes
-      delete :destroy, {id: blog_post.to_param}, valid_session
+      delete :destroy, {id: blog_post.id}, valid_session
       expect(response).to redirect_to(blog_posts_url)
     end
   end
