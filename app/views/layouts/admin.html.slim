@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title #{yield(:title) + ' | ' if content_for?(:title)}Ben Saufley
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  body
+    header
+      h1
+        = link_to 'Ben Saufley', root_path
+      nav
+
+    main = yield
+    footer
+      p Copyright ©#{Date.current.year} Ben Saufley. All rights reserved.
+    = javascript_include_tag 'application'

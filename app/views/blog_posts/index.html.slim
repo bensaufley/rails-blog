@@ -1,0 +1,7 @@
+- content_for :title, 'Index'
+
+h2 Index
+
+= render partial: 'blog_post_summary', collection: @blog_posts
+
+= will_paginate @blog_posts

@@ -1,0 +1,6 @@
+= link_to 'Add Post', new_blog_post_path
+
+ul.posts
+  = render @blog_posts
+
+= will_paginate @blog_posts
