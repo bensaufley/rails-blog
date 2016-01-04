@@ -59,11 +59,11 @@ class Admin::BlogPostsController < AdminController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_blog_post
-    @blog_post = BlogPost.find(params[:id])
+    @blog_post = BlogPost.find_by(permalink: params[:permalink])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_post_params
-    params[:blog_post]
+    params.require(:blog_post).permit(:title, :content, :tags, :slug)
   end
 end

@@ -23,11 +23,13 @@ RSpec.describe BlogPostsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BlogPostsController. Be sure to keep this updated too.
+
+  let(:blog_post) { FactoryGirl.create(:blog_post) }
+
   let(:valid_session) { {} }
 
   describe 'GET #index' do
     it 'assigns all blog_posts as @blog_posts' do
-      blog_post = BlogPost.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:blog_posts)).to eq([blog_post])
     end
@@ -35,8 +37,7 @@ RSpec.describe BlogPostsController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested blog_post as @blog_post' do
-      blog_post = BlogPost.create! valid_attributes
-      get :show, {id: blog_post.to_param}, valid_session
+      get :show, {permalink: blog_post.permalink.sub(/^\//,'')}, valid_session
       expect(assigns(:blog_post)).to eq(blog_post)
     end
   end

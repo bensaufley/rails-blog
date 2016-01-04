@@ -8,7 +8,7 @@ class BlogPostsController < ApplicationController
 
   # GET /*permalink - YYYY/MM/slug
   def show
-    @blog_post = BlogPost.find_by_permalink(params[:permalink])
+    @blog_post = BlogPost.find_by(permalink: params[:permalink])
     raise ActionController::RoutingError.new('Not Found') unless @blog_post.present?
   end
 end

@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(version: 20160102044912) do
     t.string   "title"
     t.text     "content"
     t.string   "tags",                    array: true
-    t.string   "slug"
+    t.string   "permalink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "blog_posts", ["slug", "created_at"], name: "index_blog_posts_on_slug_and_created_at", using: :btree
-  add_index "blog_posts", ["slug"], name: "index_blog_posts_on_slug", using: :btree
+  add_index "blog_posts", ["created_at"], name: "index_blog_posts_on_created_at", using: :btree
+  add_index "blog_posts", ["permalink"], name: "index_blog_posts_on_permalink", unique: true, using: :btree
   add_index "blog_posts", ["tags"], name: "index_blog_posts_on_tags", using: :gin
 
 end
