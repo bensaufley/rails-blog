@@ -7,6 +7,10 @@ RSpec.describe BlogPostsController, type: :routing do
       expect(get: '/').to route_to('blog_posts#index')
     end
 
+    pending 'routes to page 2 of posts'
+
+    pending 'routes to tags index'
+
     it 'routes to #show' do
       expect(get: '/2016/01/test-post').to route_to('blog_posts#show', permalink: '2016/01/test-post')
     end

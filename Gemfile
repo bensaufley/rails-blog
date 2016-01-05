@@ -9,6 +9,7 @@ gem 'pg'
 gem 'draper'
 
 gem 'slim-rails'
+gem 'redcarpet'
 
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'

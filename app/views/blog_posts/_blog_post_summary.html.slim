@@ -1,6 +1,6 @@
 - post = blog_post_summary.decorate
 article
   header
-    h2 = post.title
-    time datetime=post.created_at.xmlschema = post.created_at.strftime('%Y-%m-%d')
-  = post.processed_content
+    h2 = link_to post.title.html_safe, post
+    = post.timestamp
+  == post.processed_content

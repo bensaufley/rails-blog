@@ -1,10 +1,11 @@
 class BlogPost < ActiveRecord::Base
   validates :title, :content, :permalink, presence: true
+  validates :permalink, uniqueness: true
   before_validation :process
 
   attr_accessor :slug
 
-  default_scope { order(created_at: :asc) }
+  default_scope { order(created_at: :desc) }
 
   def to_param
     permalink

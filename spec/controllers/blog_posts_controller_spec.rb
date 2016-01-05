@@ -33,6 +33,8 @@ RSpec.describe BlogPostsController, type: :controller do
       get :index, {}, valid_session
       expect(assigns(:blog_posts)).to eq([blog_post])
     end
+
+    pending 'shows tagged posts only when tag present'
   end
 
   describe 'GET #show' do
