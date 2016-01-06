@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   get '/posts/:page', to: 'blog_posts#index', page: /\d*/, as: :posts
   get '/posts', to: redirect('/')
-  get '/tags/:tag(/:page)', to: 'blog_posts#index', as: :tagged_posts
+  get '/tag/:tag(/:page)', to: 'blog_posts#index', as: :tagged_posts
+  get '/type/:type(/:page)', to: 'blog_posts#index', as: :posts_by_type
+
 
   scope :admin, module: :admin do
     resources :blog_posts, path: :posts, only: [ :index, :new, :create ]

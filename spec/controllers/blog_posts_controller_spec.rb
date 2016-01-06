@@ -25,16 +25,27 @@ RSpec.describe BlogPostsController, type: :controller do
   # BlogPostsController. Be sure to keep this updated too.
 
   let(:blog_post) { FactoryGirl.create(:blog_post) }
+  let(:tagged_post) { FactoryGirl.create(:blog_post, tags: ['test']) }
+  let(:typed_post) { FactoryGirl.create(:blog_post, post_type: 'link') }
+
 
   let(:valid_session) { {} }
 
   describe 'GET #index' do
     it 'assigns all blog_posts as @blog_posts' do
       get :index, {}, valid_session
-      expect(assigns(:blog_posts)).to eq([blog_post])
+      expect(assigns(:blog_posts)).to eq([blog_post, tagged_post, typed_post].sort_by(&:publish_at).reverse)
     end
 
-    pending 'shows tagged posts only when tag present'
+    it 'shows tagged posts only when tag present' do
+      get :index, { tag: 'test' }, valid_session
+      expect(assigns(:blog_posts)).to eq([tagged_post])
+    end
+
+    it 'shows typed posts only when type present' do
+      get :index, { type: 'link' }, valid_session
+      expect(assigns(:blog_posts)).to eq([typed_post])
+    end
   end
 
   describe 'GET #show' do

@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20160102044912) do
     t.text     "content"
     t.string   "tags",                    array: true
     t.string   "permalink"
+    t.string   "post_type"
+    t.json     "info"
+    t.datetime "publish_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

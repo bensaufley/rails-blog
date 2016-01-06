@@ -5,6 +5,9 @@ class CreateBlogPosts < ActiveRecord::Migration
       t.text :content
       t.string :tags, array: true
       t.string :permalink
+      t.string :post_type
+      t.json :info
+      t.datetime :publish_at
 
       t.timestamps null: false
     end

@@ -13,6 +13,7 @@ gem 'redcarpet'
 
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
+gem 'support-for'
 
 gem 'jquery-rails'
 
