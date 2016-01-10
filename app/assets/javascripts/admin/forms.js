@@ -1,5 +1,4 @@
 //= require codemirror
-//= require_tree ../../../../vendor/assets/javascripts/codemirror-modes/.
 //= require_self
 
 (function(cm, u) {
@@ -14,7 +13,7 @@
         lineNumbers: true,
         lineWrapping: true,
         mode: 'gfm',
-        theme: 'solarized',
+        theme: 'solarized dark',
         value: el.value
       });
     });

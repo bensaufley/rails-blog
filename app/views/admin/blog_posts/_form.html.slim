@@ -21,6 +21,13 @@
     .medium-8.large-9.columns = f.text_field :permalink
 
   .row
+    .medium-4.large-3.columns = f.label :post_type
+    .medium-8.large-9.columns
+      - f.object.class::POST_TYPES.each do |type|
+        = f.radio_button :post_type, type
+        = f.label :post_type, type.titleize, value: type
+
+  .row
     .medium-8.large-9.columns.right
       = f.submit
       = link_to 'Cancel', blog_posts_path
