@@ -35,15 +35,21 @@ a:visited {
   }
 }
 
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
 body {
   background: $dark;
   color: $light;
   font-family: Lato, sans-serif;
-  font-size: ems(12px);
+  font-size: ems(14px);
   font-weight: 400;
 
   @media #{$medium-up} {
-    font-size: ems(14px);
+    font-size: ems(15px);
   }
 
   @media #{$grid-up} {
@@ -70,4 +76,15 @@ main {
     max-width: $grid-width;
     width: $grid-width;
   }
+}
+
+strong,
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
 }

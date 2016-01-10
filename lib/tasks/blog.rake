@@ -16,7 +16,25 @@ namespace :blog do
       post_date = Time.parse(post.xpath('wp:post_date').text)
       blog_post = BlogPost.find_or_initialize_by(permalink: "#{post_date.strftime('%Y/%m')}/#{post.xpath('wp:post_name').text}")
       blog_post.title = post.xpath('title').text
-      blog_post.content = post.xpath('content:encoded').text
+
+      # Process content
+      content = post.xpath('content:encoded').text
+      footnotes = []
+      content.gsub! /\[ref\](.+?)\[\/ref\]/m do
+        footnotes << $1
+        "[^#{footnotes.length}]"
+      end
+      content.gsub! /\[caption(.*?)\](.+?)((?<=>)[^<>\n]+?)?\[\/caption\]/m do
+        c = $2
+        caption_fallback = $3
+        args = Hash[$1.scan(/([\w\-_]+) ?= ?(['"])(.+?)(?<!\\)\2/).map { |v| [ v[0].to_sym, v[2] ] }]
+        "<figure#{" id=\"#{args[:id]}\"" if args[:id].present?}#{" class=\"#{args[:align]}\"" if args[:align].present?}>\n#{c}\n<figcaption>#{args[:caption].presence || caption_fallback}</figcaption>\n</figure>"
+      end
+      content.gsub!(/(<br\/?>)*/, '<br>')
+      content.gsub!(/\A\s*(<img[^>]+?>)\s*(?=\w)/,"\1\n\n")
+      content = content.sub(/\n*\z/,"\n\n") + footnotes.each_with_index.map { |v, k| "[^#{k+1}]: #{v}" }.join("\n")
+      blog_post.content = content
+
       blog_post.tags = post.xpath('category[@domain="post_tag"]').map(&:text)
       blog_post.publish_at = post_date
       post_type = post.xpath('category[@domain="post_format"]').text.downcase.presence

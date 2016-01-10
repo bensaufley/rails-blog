@@ -3,6 +3,6 @@ article
     h2 = link_to @blog_post.title, @blog_post
     = @blog_post.timestamp
     - if @blog_post.tags.present?
-      small Tags: #{@blog_post.tag_links}
+      p.tags Tags: #{@blog_post.tag_links}
 
   == @blog_post.processed_content

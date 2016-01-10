@@ -1,0 +1,13 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag 'application', media: 'all'
+
+- content_for :nav do
+  = link_with_active 'Home', root_path
+  = link_with_active 'Art', ''
+  = link_with_active 'Projects', ''
+  = link_with_active 'Contact', ''
+
+- content_for :javascripts do
+  = javascript_include_tag 'application'
+
+= render template: 'layouts/application'

@@ -37,19 +37,19 @@
 
   nav {
     text-align: center;
-    padding-bottom: $grid-spacing/2;
 
     a:link,
     a:visited {
       clear: both;
       color: $red;
+      display: inline-block;
       font-family: Monaco, Menlo, monospace;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
-      line-height: 1.3em;
+      line-height: 2em;
       text-decoration: underline;
-      padding-left: .2em;
-      padding-right: .2em;
+      padding-left: .4em;
+      padding-right: .4em;
 
       &:hover,
       &:focus,
@@ -64,6 +64,10 @@
       &.active {
         background-color: $red;
       }
+
+      @media #{$medium-up} {
+        line-height: 1.8em;
+      }
     }
 
     @media #{$grid-up} {
@@ -72,13 +76,14 @@
 
       a:link,
       a:visited {
-        display: inline-block;
         float: left;
+        font-size: 12px;
+        line-height: 1.3em;
         padding-left: 0;
 
         &:before {
           background-color: $dark;
-          content: '$>\00A0';
+          content: '~/pages $\00A0';
           color: $light;
           display: inline-block;
           margin-right: .2em;
