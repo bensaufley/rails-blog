@@ -1,3 +1,6 @@
-= link_to blog_post.title, edit_blog_post_path(blog_post)
-= blog_post.created_at
-= blog_post.tags
+li
+  = link_to blog_post.title, edit_blog_post_path(blog_post)
+  = blog_post.publish_at.strftime('%Y-%-m-%-d %-I:%M%P')
+  = blog_post.created_at.strftime('%Y-%-m-%-d %-I:%M%P')
+  == blog_post.tags.map { |tag| link_to tag, admin_tagged_posts_path(tag) }.join(', ')
+  = link_to blog_post.post_type.titleize, admin_posts_by_type_path(blog_post.post_type)

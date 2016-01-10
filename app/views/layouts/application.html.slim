@@ -1,16 +1,27 @@
 doctype html
-html
+html lang='en'
   head
     title #{yield(:title) + ' | ' if content_for?(:title)}Ben Saufley
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
+    javascript:
+      // <![CDATA[
+      #{ Rails.application.assets.find_asset('modernizr.js').to_s.html_safe }
+      // ]]>
+
   body
-    header
-      h1
-        = link_to 'Ben Saufley', root_path
+    header.page-header
+      = link_to root_path, class: 'logo' do
+        h1 Ben Saufley
+        h2 illustrator, web designer & developer
       nav
+        = link_with_active 'Home', root_path
+        = link_with_active 'Art', ''
+        = link_with_active 'Projects', ''
+        = link_with_active 'Contact', ''
 
     main = yield
     footer
       p Copyright ©#{Date.current.year} Ben Saufley. All rights reserved.
     = javascript_include_tag 'application'
+    script src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js'

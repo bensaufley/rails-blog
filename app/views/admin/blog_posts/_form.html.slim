@@ -1,15 +1,26 @@
 = form_for @blog_post do |f|
 
-  = f.label :title
-  = f.text_field :title
+  .row
+    .medium-4.large-3.columns = f.label :title
+    .medium-8.large-9.columns = f.text_field :title
 
-  = f.label :content
-  = f.text_area :content
+  .row
+    .medium-4.large-3.columns = f.label :content
+    .medium-8.large-9.columns = f.text_area :content, data: { codemirror: '' }
 
-  = f.label :tags
-  = f.text_field :tags
+  .row
+    .medium-4.large-3.columns = f.label :tags
+    .medium-8.large-9.columns = f.text_field :tags, value: (f.object.tags || []).join(',')
 
-  = f.label :slug
-  = f.text_field :slug
+  .row
+    .medium-4.large-3.columns = f.label :publish_at
+    .medium-8.large-9.columns = f.datetime_select :publish_at
 
-  = f.submit
+  .row
+    .medium-4.large-3.columns = f.label :permalink
+    .medium-8.large-9.columns = f.text_field :permalink
+
+  .row
+    .medium-8.large-9.columns.right
+      = f.submit
+      = link_to 'Cancel', blog_posts_path

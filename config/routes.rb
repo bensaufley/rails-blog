@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
 
   scope :admin, module: :admin do
+    get '/', to: '/admin#index', as: :admin
     resources :blog_posts, path: :posts, only: [ :index, :new, :create ]
+    get '/tag/:tag(/:page)', to: 'blog_posts#index', as: :admin_tagged_posts
+    get '/type/:type(/:page)', to: 'blog_posts#index', as: :admin_posts_by_type
   end
 
   get '/*permalink/edit', to: 'admin/blog_posts#edit', permalink: /\d{4}\/\d{2}\/.+/, as: :edit_blog_post

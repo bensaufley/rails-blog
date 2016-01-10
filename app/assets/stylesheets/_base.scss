@@ -1,4 +1,120 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+div,
+p,
+ul,
+ol,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+article,
+section,
+aside,
+time {
+  line-height: 1.6em;
+  margin: 0;
+
+  & + & {
+    margin-top: 1em;
+  }
+
+  @media #{$medium-up} {
+    line-height: 1.5em;
+  }
+
+  @media #{$grid-up} {
+    line-height: 1.4em;
+  }
+}
+
+body {
+  background: $dark;
+  font-family: Lato, sans-serif;
+  font-size: ems(12px);
+  font-weight: 400;
+
+  @media #{$medium-up} {
+    font-size: ems(14px);
+  }
+
+  @media #{$grid-up} {
+    font-size: ems(16px);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+}
+
+a:link,
+a:visited {
+  color: $primary-color;
+  font-weight: bolder;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $secondary-color;
+    outline: none;
+  }
+
+  &[target=_blank] {
+    .touch &,
+    &:hover {
+      &:before {
+        @include fa-icon;
+        content: $fa-var-external-link-square;
+        font-size: .75em;
+        margin-right: .25em;
+        opacity: .5;
+      }
+    }
+  }
+}
+
 main {
+  @include clearfix;
   margin: 0 auto;
-  max-width: $grid-width;
+  padding: $grid-spacing/2;
+
+  .row {
+    margin: 0 (-$grid-spacing/2);
+    max-width: $grid-width;
+  }
+
+  @media #{$medium-up} {
+    max-width: $line-width;
+  }
+
+  @media screen and (min-width: $grid-width) {
+    padding-left: $grid-width - $line-width;
+    max-width: $grid-width;
+    width: $grid-width;
+  }
+}
+
+:first-child {
+  margin-top: 0;
+}
+
+:last-child {
+  margin-bottom: 0;
 }

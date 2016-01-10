@@ -1,0 +1,76 @@
+a:link,
+a:visited {
+  &.permalink {
+    &:before {
+      @include fa-icon;
+      background: #000;
+      border-radius: 3em;
+      color: #fff;
+      content: $fa-var-link;
+      font-size: .6em;
+      line-height: 1.6em;
+      height: 1.6em;
+      margin: 0 .25em;
+      opacity: .5;
+      text-align: center;
+      vertical-align: middle;
+      width: 1.6em;
+    }
+  }
+
+  img {
+    border: 5px solid;
+  }
+}
+
+article {
+  border: 1px solid;
+  color: mix(#fff, $light);
+  border-radius: $radius;
+  padding: $grid-spacing/2;
+
+  + article {
+    margin-top: .6em;
+  }
+
+  time {
+    color: $light;
+    font-family: Monaco, Menlo, monospace;
+    font-size: 11px;
+  }
+
+  > header:first-child {
+    @include clearfix;
+    background: rgba(0, 25, 10, .25);
+    border-bottom: 1px solid $light;
+    margin: -$grid-spacing/2;
+    padding: $grid-spacing/2;
+
+    h2 {
+      float: left;
+    }
+
+    time {
+      float: right;
+    }
+
+    ~ * {
+      hyphens: auto;
+    }
+  }
+}
+
+.alignleft {
+  float: left;
+  margin: $grid-spacing/4 $grid-spacing/2 $grid-spacing/2 0;
+}
+
+.alignright {
+  float: right;
+  margin: $grid-spacing/4 0 $grid-spacing/2 $grid-spacing/2;
+}
+
+.alignnone {
+  clear: both;
+  margin: $grid-spacing/2 auto;
+}

@@ -1,9 +1,15 @@
-@import 'functions',
-'definitions',
-'normalize/normalize';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
-@include normalize;
+@import 'normalize';
+
+@import 'functions',
+'definitions';
 
 @import 'grid';
+@import 'utility-classes';
 
 @import 'base';
+@import 'header';
+@import 'blog';
+@import 'forms';

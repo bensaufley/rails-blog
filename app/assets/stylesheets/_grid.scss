@@ -1,13 +1,12 @@
 $sizes: (
   small: (false, $small-only),
   medium: ($medium-only, $medium-up),
-  large: ($large-only, $large-up),
-  extra-large: ($extra-large-only, $extra-large-up)
+  large: ($large-only, $large-up)
 );
 
-@mixin columns($size, $amount: $column-count) {
+@mixin widths($size, $amount: $column-count) {
   @for $i from 1 through $amount {
-    &.#{$size}-#{$i} {
+    .#{$size}-#{$i} {
       width: percentage($i/$amount);
     }
   }
@@ -19,7 +18,7 @@ $sizes: (
   margin: 0 auto;
 
   .row & {
-    margin: 0 -$grid-spacing/2;
+    margin: 0 (-$grid-spacing/2);
     max-width: $grid-width;
   }
 }
@@ -29,20 +28,20 @@ $sizes: (
   float: left;
   padding: 0 $grid-spacing/2;
   width: 100%;
+}
 
-  @include columns(small);
+@include widths(small);
 
-  @each $size, $queries in $sizes {
-    @if (nth($queries, 1) != false) {
-      @media #{nth($queries, 1)} {
-        @include columns(unquote("#{$size}-only"));
-      }
+@each $size, $queries in $sizes {
+  @if (nth($queries, 1) != false) {
+    @media #{nth($queries, 1)} {
+      @include widths(unquote("#{$size}-only"));
     }
+  }
 
-    @if (nth($queries, 2) != false) {
-      @media #{nth($queries, 2)} {
-        @include columns($size) ;
-      }
+  @if (nth($queries, 2) != false) {
+    @media #{nth($queries, 2)} {
+      @include widths($size) ;
     }
   }
 }

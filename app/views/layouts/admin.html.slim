@@ -2,15 +2,16 @@ doctype html
 html
   head
     title #{yield(:title) + ' | ' if content_for?(:title)}Ben Saufley
-    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'application', 'codemirror', 'solarized', media: 'all'
     = csrf_meta_tags
   body
     header
       h1
         = link_to 'Ben Saufley', root_path
-      nav
+      nav == breadcrumbs
 
     main = yield
     footer
       p Copyright ©#{Date.current.year} Ben Saufley. All rights reserved.
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'admin/admin'
+    script src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js'

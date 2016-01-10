@@ -15,7 +15,7 @@ class BlogPostDecorator < Draper::Decorator
 
   def title_link
     link_post = model.post_type == 'link' && model.info[:link_url].present?
-    h.link_to(model.title.html_safe, link_post ? model.info[:link_url] : model) +
-    (h.link_to(h.content_tag(:small, 'Permalink', class: 'permalink'), model) if link_post)
+    h.link_to(model.title.html_safe, link_post ? model.info[:link_url] : model, target: ('_blank' if link_post)) +
+    ((h.link_to '', model, class: 'permalink', title: 'Permalink') if link_post)
   end
 end

@@ -5,6 +5,5 @@ FactoryGirl.define do
     tags { Faker::Lorem.words((2..6).to_a.sample).join(',') }
     post_type 'post'
     publish_at { Time.current - 5.minutes }
-    slug ''
   end
 end

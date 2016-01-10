@@ -1,0 +1,13 @@
+@each $dir in (left, right) {
+  .#{$dir} {
+    float: $dir;
+  }
+
+  .text-#{$dir} {
+    text-align: $dir;
+  }
+}
+
+.text-center {
+  text-align: center;
+}

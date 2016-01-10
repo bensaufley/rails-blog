@@ -9,7 +9,7 @@ class BlogPostsController < ApplicationController
     @blog_posts = @blog_posts.paginate(page: params[:page], per_page: 5)
   end
 
-  # GET /*permalink - YYYY/MM/slug
+  # GET /*permalink - YYYY/MM/title-slug
   def show
     @blog_post = BlogPost.find_by(permalink: params[:permalink]).decorate
     raise ActionController::RoutingError.new('Not Found') unless @blog_post.present?
