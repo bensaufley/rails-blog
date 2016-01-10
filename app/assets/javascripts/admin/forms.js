@@ -2,20 +2,21 @@
 //= require_tree ../../../../vendor/assets/javascripts/codemirror-modes/.
 //= require_self
 
-(function($, cm) {
+(function(cm, u) {
   'use strict';
 
-  cm.keyMap.default["Shift-Tab"] = "indentLess";
-  cm.keyMap.default["Tab"] = "indentMore";
+  cm.keyMap.default['Shift-Tab'] = 'indentLess';
+  cm.keyMap.default['Tab'] = 'indentMore';
 
-  $(function() {
-    $('[data-codemirror]').each(function() {
-      cm.fromTextArea(this, {
-        mode: 'gfm',
-        value: this.value,
+  u.ready(function() {
+    u.all('[data-codemirror]').forEach(function(el) {
+      cm.fromTextArea(el, {
         lineNumbers: true,
-        theme: 'solarized'
+        lineWrapping: true,
+        mode: 'gfm',
+        theme: 'solarized',
+        value: el.value
       });
     });
   });
-}).call(this, jQuery, CodeMirror);
+}).call(this, CodeMirror, Util);
