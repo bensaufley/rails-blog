@@ -7,7 +7,9 @@ class BlogPostDecorator < Draper::Decorator
   end
 
   def processed_content(content = model.content)
-    markdown(content).gsub(/&lt;!--(.+?)--&gt;/,'<!--\1-->') # fixes
+    markdown(content)
+      .gsub(/<p>(<img[^<>]+?>)<\/p>/m,'\1')   # Unwrap images from p tags
+      .gsub(/&lt;!--(.+?)--&gt;/,'<!--\1-->') # Fixes markdown's mangled HTML comments
   end
 
   def tag_links

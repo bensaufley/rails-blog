@@ -11,7 +11,8 @@ class BlogPostsController < ApplicationController
 
   # GET /*permalink - YYYY/MM/title-slug
   def show
-    @blog_post = BlogPost.find_by(permalink: params[:permalink]).decorate
-    raise ActionController::RoutingError.new('Not Found') unless @blog_post.present?
+    @blog_post = BlogPost.find_by(permalink: params[:permalink])
+    raise ActionController::RoutingError.new('Not Found: ' + params[:permalink]) unless @blog_post.present?
+    @blog_post = @blog_post.decorate
   end
 end
