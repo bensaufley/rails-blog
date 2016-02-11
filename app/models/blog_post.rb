@@ -27,7 +27,7 @@ class BlogPost < ActiveRecord::Base
   def process
     self.publish_at ||= Time.current
     if self.permalink.blank? && self.title.present?
-      self.permalink = self.publish_at.strftime('%Y/%m/') + self.title[0,50].downcase.gsub(/[^A-Z]+/i,'-').sub(/\-$/,'')
+      self.permalink = self.publish_at.strftime('%Y/%m/') + self.title[0,50].downcase.gsub(/[^A-Z]+/i,'-').sub(/^\-?(.*)\-?$/,'\1')
     end
     self.tags = self.tags.split(',').map(&:trim) if self.tags.is_a?(String)
   end
