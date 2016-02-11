@@ -1,1 +1,1 @@
-require 'blog-markdown'
+require 'blog_markdown'

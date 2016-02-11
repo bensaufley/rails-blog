@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe BlogPostsController, type: :controller do
-
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BlogPostsController. Be sure to keep this updated too.
@@ -27,7 +26,6 @@ RSpec.describe BlogPostsController, type: :controller do
   let(:blog_post) { FactoryGirl.create(:blog_post) }
   let(:tagged_post) { FactoryGirl.create(:blog_post, tags: ['test']) }
   let(:typed_post) { FactoryGirl.create(:blog_post, post_type: 'link') }
-
 
   let(:valid_session) { {} }
 
@@ -50,7 +48,7 @@ RSpec.describe BlogPostsController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested blog_post as @blog_post' do
-      get :show, {permalink: blog_post.permalink.sub(/^\//,'')}, valid_session
+      get :show, { permalink: blog_post.permalink.sub(%r{^/}, '') }, valid_session
       expect(assigns(:blog_post)).to eq(blog_post)
     end
   end

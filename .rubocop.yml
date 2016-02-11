@@ -1,0 +1,15 @@
+Rails:
+  Enabled: true
+
+LineLength:
+  Max: 120
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'db/migrate/*.rb'

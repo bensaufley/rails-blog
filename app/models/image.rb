@@ -4,5 +4,5 @@ class Image < Attachment
     small: '150x150>'
   }
 
-  validates_attachment_content_type :file, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :file, content_type: %r{\Aimage/.*\Z}
 end

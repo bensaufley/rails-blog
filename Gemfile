@@ -31,6 +31,8 @@ gem 'will_paginate'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'rubocop', require: false
+
 group :development, :test do
   gem 'pry'
 
@@ -39,4 +41,3 @@ group :development, :test do
   gem 'faker'
   gem 'factory_girl_rails'
 end
-

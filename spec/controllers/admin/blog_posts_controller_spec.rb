@@ -17,7 +17,7 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
   let(:valid_session) { {} }
 
   before :each do
-    @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'secret')
+    @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'secret') # rubocop:disable Metrics/LineLength
   end
 
   describe 'GET #new' do
@@ -38,31 +38,31 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new BlogPost' do
-        expect {
-          post :create, {blog_post: valid_attributes}, valid_session
-        }.to change(BlogPost, :count).by(1)
+        expect do
+          post :create, { blog_post: valid_attributes }, valid_session
+        end.to change(BlogPost, :count).by(1)
       end
 
       it 'assigns a newly created blog_post as @blog_post' do
-        post :create, {blog_post: valid_attributes}, valid_session
+        post :create, { blog_post: valid_attributes }, valid_session
         expect(assigns(:blog_post)).to be_a(BlogPost)
         expect(assigns(:blog_post)).to be_persisted
       end
 
       it 'redirects to the created blog_post' do
-        post :create, {blog_post: valid_attributes}, valid_session
+        post :create, { blog_post: valid_attributes }, valid_session
         expect(response).to redirect_to(BlogPost.last)
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved blog_post as @blog_post' do
-        post :create, {blog_post: invalid_attributes}, valid_session
+        post :create, { blog_post: invalid_attributes }, valid_session
         expect(assigns(:blog_post)).to be_a_new(BlogPost)
       end
 
       it 're-renders the "new" template' do
-        post :create, {blog_post: invalid_attributes}, valid_session
+        post :create, { blog_post: invalid_attributes }, valid_session
         expect(response).to render_template('new')
       end
     end
@@ -70,26 +70,26 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
+      let(:new_attributes) do
         skip('Add a hash of attributes valid for your model')
-      }
+      end
 
       it 'updates the requested blog_post' do
         blog_post = FactoryGirl.create(:blog_post)
-        put :update, {permalink: blog_post.permalink, blog_post: new_attributes}, valid_session
+        put :update, { permalink: blog_post.permalink, blog_post: new_attributes }, valid_session
         blog_post.reload
         skip('Add assertions for updated state')
       end
 
       it 'assigns the requested blog_post as @blog_post' do
         blog_post = FactoryGirl.create(:blog_post)
-        put :update, {permalink: blog_post.permalink, blog_post: valid_attributes}, valid_session
+        put :update, { permalink: blog_post.permalink, blog_post: valid_attributes }, valid_session
         expect(assigns(:blog_post)).to eq(blog_post)
       end
 
       it 'redirects to the blog_post' do
         blog_post = FactoryGirl.create(:blog_post)
-        put :update, {permalink: blog_post.permalink, blog_post: valid_attributes}, valid_session
+        put :update, { permalink: blog_post.permalink, blog_post: valid_attributes }, valid_session
         expect(response).to redirect_to(blog_post.reload)
       end
     end
@@ -97,13 +97,13 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the blog_post as @blog_post' do
         blog_post = FactoryGirl.create(:blog_post)
-        put :update, {permalink: blog_post.permalink, blog_post: invalid_attributes}, valid_session
+        put :update, { permalink: blog_post.permalink, blog_post: invalid_attributes }, valid_session
         expect(assigns(:blog_post)).to eq(blog_post)
       end
 
       it 're-renders the "edit" template' do
         blog_post = FactoryGirl.create(:blog_post)
-        put :update, {permalink: blog_post.permalink, blog_post: invalid_attributes}, valid_session
+        put :update, { permalink: blog_post.permalink, blog_post: invalid_attributes }, valid_session
         expect(response).to render_template('edit')
       end
     end
@@ -112,14 +112,14 @@ RSpec.describe Admin::BlogPostsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested blog_post' do
       blog_post = FactoryGirl.create(:blog_post)
-      expect {
-        delete :destroy, {permalink: blog_post.permalink}, valid_session
-      }.to change(BlogPost, :count).by(-1)
+      expect do
+        delete :destroy, { permalink: blog_post.permalink }, valid_session
+      end.to change(BlogPost, :count).by(-1)
     end
 
     it 'redirects to the blog_posts list' do
       blog_post = FactoryGirl.create(:blog_post)
-      delete :destroy, {permalink: blog_post.permalink}, valid_session
+      delete :destroy, { permalink: blog_post.permalink }, valid_session
       expect(response).to redirect_to(blog_posts_url)
     end
   end

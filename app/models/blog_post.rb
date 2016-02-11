@@ -1,5 +1,5 @@
 class BlogPost < ActiveRecord::Base
-  POST_TYPES = %w(post link image)
+  POST_TYPES = %w(post link image).freeze
 
   validates :title, :content, :permalink, :post_type, :publish_at, presence: true
   validates :permalink, uniqueness: true
@@ -25,10 +25,25 @@ class BlogPost < ActiveRecord::Base
   end
 
   def process
+    set_publish_at
+    set_permalink
+    set_tags
+  end
+
+  def set_publish_at
     self.publish_at ||= Time.current
-    if self.permalink.blank? && self.title.present?
-      self.permalink = self.publish_at.strftime('%Y/%m/') + self.title[0,50].downcase.gsub(/[^A-Z]+/i,'-').sub(/^\-?(.*)\-?$/,'\1')
-    end
-    self.tags = self.tags.split(',').map(&:trim) if self.tags.is_a?(String)
+  end
+
+  def set_permalink
+    return unless permalink.blank? && title.present?
+    self.permalink = self.publish_at.strftime('%Y/%m/') + slug
+  end
+
+  def set_tags
+    self.tags = tags.split(',').map(&:trim) if tags.is_a?(String)
+  end
+
+  def slug
+    title[0, 50].downcase.gsub(/[^A-Z]+/i, '-').sub(/^\-?(.*)\-?$/, '\1')
   end
 end

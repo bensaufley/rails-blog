@@ -4,14 +4,7 @@ class Admin::BlogPostsController < AdminController
   # Get /admin/posts(/:page)
   # Get /admin/posts.json
   def index
-    @blog_posts = BlogPost
-    if params[:tag].present?
-      @blog_posts = @blog_posts.where('? = ANY (tags)', params[:tag])
-      @search = "Tag: #{params[:tag]}"
-    elsif params[:type].present? && params[:type].in?(BlogPost::POST_TYPES)
-      @blog_posts = @blog_posts.where(post_type: params[:type])
-      @search = "Type: #{params[:type].titleize}"
-    end
+    filter_by_type unless filter_by_tag
     @blog_posts = @blog_posts.paginate(page: params[:page], per_page: 25)
   end
 
@@ -65,6 +58,7 @@ class Admin::BlogPostsController < AdminController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_blog_post
     @blog_post = BlogPost.find_by(permalink: params[:permalink])
@@ -73,5 +67,20 @@ class Admin::BlogPostsController < AdminController
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_post_params
     params.require(:blog_post).permit(:title, :content, :tags, :permalink)
+  end
+
+  def filter_by_tag
+    if params[:tag].present?
+      @blog_posts = BlogPost.where('? = ANY (tags)', params[:tag])
+      @search = "Tag: #{params[:tag]}"
+      true
+    end
+  end
+
+  def filter_by_type
+    if params[:type].present? && params[:type].in?(BlogPost::POST_TYPES)
+      @blog_posts = BlogPost.where(post_type: params[:type])
+      @search = "Type: #{params[:type].titleize}"
+    end
   end
 end
