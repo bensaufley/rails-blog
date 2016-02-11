@@ -1,21 +1,6 @@
-@function ems($val, $base: $global-base) {
-  @if $val == 0 {
-    @return 0;
-  }
-  @return $val * 1em/$base;
-}
-
-@function lower-bound($size) {
-  @return nth(map-get($breakpoints, $size), 1);
-}
-
-@function upper-bound($size) {
-  @return nth(map-get($breakpoints, $size), 2);
-}
-
 @mixin clearfix {
   &:after {
-    content: " ";
+    content: ' ';
     display: table;
     clear: both;
   }

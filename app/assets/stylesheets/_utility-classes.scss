@@ -1,10 +1,10 @@
-@each $dir in (left, right) {
-  .#{$dir} {
-    float: $dir;
+@each $direction in (left, right) {
+  .#{$direction} {
+    float: $direction;
   }
 
-  .text-#{$dir} {
-    text-align: $dir;
+  .text-#{$direction} {
+    text-align: $direction;
   }
 }
 

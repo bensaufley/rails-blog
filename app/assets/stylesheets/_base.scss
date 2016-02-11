@@ -10,14 +10,12 @@ html {
 
 a:link,
 a:visited {
-  color: $primary-color;
   font-weight: bolder;
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: $secondary-color;
     outline: none;
   }
 
@@ -41,43 +39,6 @@ img {
   max-width: 100%;
 }
 
-body {
-  background: $dark;
-  color: $light;
-  font-family: Lato, sans-serif;
-  font-size: ems(14px);
-  font-weight: 400;
-
-  @media #{$medium-up} {
-    font-size: ems(15px);
-  }
-
-  @media #{$grid-up} {
-    font-size: ems(16px);
-  }
-}
-
-main {
-  @include clearfix;
-  margin: 0 auto;
-  padding: $grid-spacing/2;
-
-  .row {
-    margin: 0 (-$grid-spacing/2);
-    max-width: $grid-width;
-  }
-
-  @media #{$medium-up} {
-    max-width: $line-width;
-  }
-
-  @media screen and (min-width: $grid-width) {
-    padding-left: $grid-width - $line-width;
-    max-width: $grid-width;
-    width: $grid-width;
-  }
-}
-
 strong,
 b,
 h1,
@@ -87,4 +48,44 @@ h4,
 h5,
 h6 {
   font-weight: 900;
+}
+
+div,
+p,
+ul,
+ol,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+article,
+section,
+aside,
+time {
+  line-height: 1.6em;
+  margin-bottom: 0;
+  margin-top: 0;
+
+  + div,
+  + p,
+  + ul,
+  + ol,
+  + blockquote,
+  + h1,
+  + h2,
+  + h3,
+  + h4,
+  + h5,
+  + h6,
+  + header,
+  + article,
+  + section,
+  + aside,
+  + time {
+    margin-top: 1em;
+  }
 }

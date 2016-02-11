@@ -5,9 +5,6 @@ input[type=number],
 select,
 textarea,
 label {
-  background: $dark;
-  color: $light;
-  margin-bottom: $grid-spacing/2;
   width: 100%;
 }
 
@@ -17,20 +14,13 @@ input[type=tel],
 input[type=number],
 select,
 textarea {
-  border: 1px solid;
-  border-radius: $radius;
-  line-height: 1.5em;
-  padding: 0 .5em;
 }
 
 label {
   cursor: pointer;
-  line-height: 1.5em + ems(2px);
 }
 
 textarea {
-  height: 1.3em * 15;
-  font-family: monospace, monospace;
 }
 
 select {
@@ -39,25 +29,6 @@ select {
   }
 }
 
-[type=radio],
-[type=checkbox] {
-  margin-bottom: $grid-spacing/2;
-
-  + label {
-    margin-left: .5em;
-  }
-
-  &:checked + label {
-    font-weight: 900;
-  }
-
-  & + label + & {
-    margin-left: 1em;
-  }
-}
-
 .CodeMirror-wrap {
   border: 1px solid;
-  border-radius: $radius;
-  margin-bottom: $grid-spacing/2;
 }
