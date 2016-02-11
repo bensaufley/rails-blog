@@ -11,6 +11,9 @@ gem 'draper'
 gem 'slim-rails'
 gem 'redcarpet'
 
+gem 'paperclip'
+gem 'figaro'
+
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

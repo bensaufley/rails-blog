@@ -45,6 +45,10 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     builder (3.2.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     concurrent-ruby (1.0.0)
     diff-lcs (1.2.5)
@@ -62,6 +66,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    figaro (1.1.1)
+      thor (~> 0.14)
     font-awesome-sass (4.5.0)
       sass (>= 3.2)
     globalid (0.3.6)
@@ -81,11 +87,18 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99)
+    mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
+    paperclip (4.3.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -189,9 +202,11 @@ DEPENDENCIES
   draper
   factory_girl_rails
   faker
+  figaro
   font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
+  paperclip
   pg
   pry
   rails (= 4.2.0)

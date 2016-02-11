@@ -24,6 +24,16 @@ module Bscom
       g.fixture_replacement :factory_girl
     end
 
+    # Paperclip AWS
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_credentials: {
+        bucket: ENV['s3_bucket_name'],
+        access_key_id: ENV['aws_access_key_id'],
+        secret_access_key: ENV['aws_secret_access_key']
+      }
+    }
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
