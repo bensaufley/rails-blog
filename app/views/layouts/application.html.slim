@@ -5,6 +5,7 @@ html lang='en'
     title #{yield(:title) + ' | ' if content_for?(:title)}Ben Saufley
     = yield :stylesheets
     = csrf_meta_tags
+    link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'
     javascript:
       // <![CDATA[
       #{ Rails.application.assets.find_asset('modernizr.js').to_s.html_safe }
@@ -12,13 +13,13 @@ html lang='en'
 
   body
     header.page-header
-      = link_to root_path, class: 'logo' do
+      = link_to root_path, class: 'home-link' do
         h1 Ben Saufley
         h2 illustrator, web designer & developer
       nav = yield :nav
 
-    main = yield
-    footer
+    main.container = yield
+    footer.page-footer
       p Copyright ©#{Date.current.year} Ben Saufley. All rights reserved.
     = yield :javascripts
     script src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js'

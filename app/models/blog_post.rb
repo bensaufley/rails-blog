@@ -18,6 +18,10 @@ class BlogPost < ActiveRecord::Base
     super.deep_symbolize_keys
   end
 
+  def is_link_post?
+    post_type == 'link' && info[:link_url].present?
+  end
+
   private
 
   def init

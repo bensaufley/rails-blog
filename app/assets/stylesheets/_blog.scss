@@ -3,11 +3,10 @@ a:visited {
   &.permalink {
     &:before {
       @include fa-icon;
-      background: #000;
       border-radius: 3em;
-      color: #fff;
+      color: $primary-color;
       content: $fa-var-link;
-      font-size: .6em;
+      font-size: .35em;
       line-height: 1.6em;
       height: 1.6em;
       margin: 0 .25em;
@@ -16,20 +15,40 @@ a:visited {
       vertical-align: middle;
       width: 1.6em;
     }
+
+    &.highlight:before {
+      background: $primary-color;
+      color: #fff;
+    }
+
+    &:hover {
+      border-bottom: 0;
+    }
   }
 }
 
 .alignleft,
 .alignright {
+  border: 1px solid $border-color;
+  border-radius: $global-radius;
+  height: auto;
+  margin-bottom: .5rem;
   max-width: 33.3333%;
+  transition: .3s border-color;
+
+  a:hover & {
+    border-color: $primary-color;
+  }
 }
 
 .alignleft {
   float: left;
+  margin-right: 1rem;
 }
 
 .alignright {
   float: right;
+  margin-left: 1rem;
 }
 
 .alignnone,
@@ -38,4 +57,112 @@ a:visited {
 }
 
 .aligncenter {
+}
+
+article {
+  @include clearfix;
+  border: 1px solid $border-color;
+  border-radius: $global-radius;
+  box-shadow: 0 1px 2px $border-color;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding: 1rem;
+
+  @media screen and (#{$bp-larger-than-phablet}) {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding: 2rem;
+  }
+
+  + article {
+    margin-top: 2rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 0;
+
+      @media screen and (#{$bp-larger-than-tablet}) {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: percentage(10/12);
+      }
+
+      @media screen and (#{$bp-larger-than-desktop}) {
+        max-width: percentage(8/12);
+      }
+    }
+
+    time {
+      opacity: .6;
+    }
+  }
+}
+
+blockquote {
+  border-left: 3px solid $border-color;
+  margin-left: 0;
+  padding-left: 2rem;
+}
+
+ul {
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+ul.footnotes {
+  font-size: 1.2rem;
+}
+
+.pagination {
+  border: 1px solid $border-color;
+  border-radius: $global-radius;
+  color: $border-color;
+  display: table;
+  margin: 1.05rem auto;
+  width: 100%;
+
+  @media screen and (#{$bp-larger-than-tablet}) {
+    max-width: percentage(10/12);
+  }
+
+  @media screen and (#{$bp-larger-than-desktop}) {
+    max-width: percentage(8/12);
+  }
+
+  > * {
+    box-shadow: 0 1px 1px $border-color inset;
+    display: table-cell;
+    line-height: 2rem;
+    padding-left: .3rem;
+    text-align: center;
+
+    + * {
+      border-left: 1px solid $border-color;
+    }
+  }
+
+  .fa:before {
+    line-height: 2rem;
+    vertical-align: top;
+  }
+
+  a:link,
+  a:visited {
+    &:hover {
+      background-color: $border-color;
+      border-bottom: 0;
+    }
+  }
+
+  em.current {
+    background-color: $secondary-color;
+    box-shadow: 0;
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+  }
 }

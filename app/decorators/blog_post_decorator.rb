@@ -21,11 +21,15 @@ class BlogPostDecorator < Draper::Decorator
   end
 
   def title_link
-    if model.post_type == 'link' && model.info[:link_url].present?
+    if model.is_link_post?
       link_title
     else
       post_title
     end
+  end
+
+  def permalink
+    h.link_to '', model, class: ['permalink', ('highlight' if model.is_link_post?)], title: 'Permalink'
   end
 
   private
@@ -64,11 +68,10 @@ class BlogPostDecorator < Draper::Decorator
       prettify: true,
       link_attributes: {}
     )
-  end
+  end # rubocop:enable Metrics/MethodLength
 
   def link_title
-    h.link_to(model.title.html_safe, model.info[:link_url], target: '_blank') +
-      h.link_to('', model, class: 'permalink', title: 'Permalink')
+    h.link_to model.title.html_safe, model.info[:link_url], target: '_blank'
   end
 
   def post_title

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.3.1'
 
 gem 'rails', '4.2.0'
 
@@ -35,6 +35,7 @@ gem 'rubocop', require: false
 
 group :development, :test do
   gem 'pry'
+  gem 'pry-byebug'
 
   gem 'rspec-rails', '~> 3.0'
 

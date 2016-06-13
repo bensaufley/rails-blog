@@ -1,14 +1,15 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-@import 'normalize';
-
 @import 'functions',
 'definitions';
+
+@import 'skeleton';
 
 @import 'utility-classes';
 
 @import 'base';
 @import 'header';
+@import 'footer';
 @import 'blog';
 @import 'forms';

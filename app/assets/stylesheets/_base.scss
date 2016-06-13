@@ -1,91 +1,29 @@
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 html {
-  box-sizing: border-box;
+  font-size: 75%;
 }
 
-a:link,
-a:visited {
-  font-weight: bolder;
-  text-decoration: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    outline: none;
-  }
-
-  &[target=_blank] {
-    .touch &,
-    &:hover {
-      &:before {
-        @include fa-icon;
-        content: $fa-var-external-link-square;
-        font-size: .75em;
-        margin-right: .25em;
-        opacity: .5;
-      }
-    }
-  }
+body {
+  font-weight: 400;
 }
 
-img {
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
-
-strong,
-b,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: 900;
+  font-weight: 300;
 }
 
-div,
-p,
-ul,
-ol,
-blockquote,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-header,
-article,
-section,
-aside,
-time {
-  line-height: 1.6em;
-  margin-bottom: 0;
-  margin-top: 0;
+a:link,
+a:visited {
+  text-decoration: none;
 
-  + div,
-  + p,
-  + ul,
-  + ol,
-  + blockquote,
-  + h1,
-  + h2,
-  + h3,
-  + h4,
-  + h5,
-  + h6,
-  + header,
-  + article,
-  + section,
-  + aside,
-  + time {
-    margin-top: 1em;
+  &:hover {
+    border-bottom: 1px solid;
   }
+}
+
+*:last-child {
+  margin-bottom: 0;
 }

@@ -2,10 +2,18 @@
   = stylesheet_link_tag 'application', media: 'all'
 
 - content_for :nav do
-  = link_with_active 'Home', root_path
-  = link_with_active 'Art', ''
-  = link_with_active 'Projects', ''
-  = link_with_active 'Contact', ''
+  = link_with_active root_path do
+    i.fa.fa-home.fa-fw
+    span Home
+  = link_with_active '' do
+    i.fa.fa-picture-o.fa-fw
+    span Art
+  = link_with_active '' do
+    i.fa.fa-folder-open.fa-fw
+    span Projects
+  = link_with_active '' do
+    i.fa.fa-envelope.fa-fw
+    span Contact
 
 - content_for :javascripts do
   = javascript_include_tag 'application'

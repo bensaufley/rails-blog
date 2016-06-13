@@ -2,4 +2,4 @@
 
 = render partial: 'blog_post_summary', collection: @blog_posts
 
-= will_paginate @blog_posts
+= will_paginate @blog_posts, inner_window: 2, previous_label: '<i class="fa fa-arrow-circle-left fa-fw" title="Previous Page"></i>'.html_safe, next_label: '<i class="fa fa-arrow-circle-right fa-fw" title="Next Page"></i>'.html_safe
