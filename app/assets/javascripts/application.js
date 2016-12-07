@@ -4,7 +4,7 @@
 
 (function(u) {
   this.WebFontConfig = {
-    google: { families: ['Lato:400,900:latin,latin-ext'] }
+    google: { families: ['Libre Baskerville', 'Hind Siliguri:300,600', 'latin,latin-ext'] } //Lato:400,900:latin,latin-ext'] }
   };
   u.ready(function () {
     var wf = document.createElement('script');

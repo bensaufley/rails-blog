@@ -1,7 +1,7 @@
 module AdminHelper
   def breadcrumbs
-    [link_to('Admin', admin_path), admin_action, controller_title, non_admin_action]
-      .select(&:present?).join(' > ')
+    safe_join [link_to('Admin', admin_path), admin_action, controller_title, non_admin_action]
+      .select(&:present?), ' > '
   end
 
   private
@@ -12,7 +12,7 @@ module AdminHelper
 
   def controller_title
     unless controller_name == 'admin'
-      link_to_if(action_name == 'index' && @search.blank?,
+      link_to_if(!(action_name == 'index' && @search.blank?),
                  controller_name.titleize,
                  controller: controller_name, action: :index, tag: nil, type: nil)
     end

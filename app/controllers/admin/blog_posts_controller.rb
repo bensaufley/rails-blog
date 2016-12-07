@@ -5,6 +5,7 @@ class Admin::BlogPostsController < AdminController
   # Get /admin/posts.json
   def index
     filter_by_type unless filter_by_tag
+    @blog_posts ||= BlogPost.all
     @blog_posts = @blog_posts.paginate(page: params[:page], per_page: 25)
   end
 
