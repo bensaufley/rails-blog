@@ -34,7 +34,7 @@ namespace :blog do
         caption = args[:caption].presence || caption_fallback
         "<figure#{id}#{class_name}>\n#{c}\n<figcaption>#{caption}</figcaption>\n</figure>"
       end
-      content.gsub!(%r{(<br ?/?>)*}, '<br>')
+      content.gsub!(%r{(<br ?/?>)+}, '<br>')
       content.gsub!(/\A\s*(<img[^>]+?>)\s*(?=\w)/, "\1\n\n")
       content = content.sub(/\n*\z/, "\n\n") + footnotes.each_with_index.map { |v, k| "[^#{k + 1}]: #{v}" }.join("\n")
       blog_post.content = content
